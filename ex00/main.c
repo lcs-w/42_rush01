@@ -49,7 +49,7 @@ int **get_grid44(const int *input)
         r++;
     }
 
-    _solve_core44(input, solution);
+    _core_solver44(input, solution);
 
     return solution;
 }
@@ -99,8 +99,9 @@ int main(void)
         write(1, "Error\n", 6);
         return (-1);
     }
-    else
-        write(1, "it is 16!\n", 10);
+
+    int line1[] = {1, 2, 4, 4};
+    bool vali = _validate_line(4, 1, line1, 4);
 
     solution = get_grid44(input);
     write_grid(solution, 4);
