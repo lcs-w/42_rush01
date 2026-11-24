@@ -14,10 +14,9 @@ int main(int argc, char *argv[])
 	int **solution;
 	int *input;
 	int dim;
-	int flag;
+	int flag = -1;
 
 	dim = 4;
-	flag = -1;
 	if (argc != 2)
 	{
 		printf("input error\n");
