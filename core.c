@@ -81,13 +81,19 @@ void _core_solver44(const int *input, int **solution,
         row[1] = -1;
         while (++row[1] < 24)
         {
+            if (row[0] == row[1])
+                continue;
             row[2] = -1;
             while (++row[2] < 24)
             {
+                if (row[2] == row[1] || row[2] == row[0])
+                    continue;
                 row[3] = -1;
                 while (++row[3] < 24)
                 {
-                    _assign_solution_rows4(solution, all_combo, row, 4);
+                    if (row[3] == row[2] || row[3] == row[1] || row[3] == row[0])
+                        continue;
+                    _assign_solution_rows(solution, all_combo, row, 4);
                     if (_validate_grid(input, solution, 4))
                     {
                         *flag = 1;
