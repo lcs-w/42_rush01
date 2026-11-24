@@ -3,53 +3,8 @@
 #include <stdlib.h>
 #include "combo.h"
 #include "util.h"
+#include "output.h"
 
-void write_digit(int digit, char *c);
-void write_grid(int **solution, const int dim);
-void free_solution(int **solution, int dim);
-
-// write the single digit and c together
-void write_digit(int digit, char *c)
-{
-	char buf;
-
-	buf = digit + '0';
-	write(1, &buf, 1);
-	write(1, c, 1);
-}
-
-void write_grid(int **solution, const int dim)
-{
-	int row;
-	int col;
-
-	row = -1;
-	while (++row <= dim - 1)
-	{
-		col = -1;
-		while (++col <= dim - 1)
-		{
-			if (col < dim - 1 && solution[row][col] >= 0 && solution[row][col] <= 9)
-			{
-				write_digit(solution[row][col], " ");
-			}
-			else if (col == dim - 1 && solution[row][col] >= 0 && solution[row][col] <= 9)
-			{
-				write_digit(solution[row][col], "\n");
-			}
-		}
-	}
-}
-
-int **solve44(int *input, int **all_combo, int *flag)
-{
-	int **solution;
-
-	all_combo = malloc(25 * sizeof(int *));
-	get_all_combo24(all_combo);
-	solution = get_grid44(input, all_combo, flag);
-	return (solution);
-}
 // int	main(void)
 // {
 // 	int		argc = 2;

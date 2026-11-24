@@ -1,30 +1,25 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "combo.h"
 #include "util.h"
 
-void _core_solver44(const int *input, int **solution,
-                    int **all_combo, int *flag);
 int _validate_grid(const int *input, int **solution, int dim);
 int _validate_line(int side1, int side2, const int *line, int dim);
 int _validate_side(int expected, const int *line, int dim, int direction);
+void _core_solver44(const int *input, int **solution,
+                    int **all_combo, int *flag);
 
 int _validate_grid(const int *input, int **solution, int dim)
 {
-    int col;
-    int row;
+    int col = -1;
+    int row = -1;
     int *col_copy;
 
     if (dim != 4 && dim != 9)
         return (0);
-    col = -1;
-    row = -1;
     while (++row < dim)
-    {
         if (!_validate_line(input[row + dim * 2],
                             input[row + dim * 3], solution[row], dim))
             return (0);
-    }
     while (++col < dim)
     {
         col_copy = _copy_column(solution, col, 4);
@@ -73,9 +68,8 @@ int _validate_line(int side1, int side2, const int *line, int dim)
 void _core_solver44(const int *input, int **solution,
                     int **all_combo, int *flag)
 {
-    int row[4];
+    int row[4] = {-1};
 
-    row[0] = -1;
     while (++row[0] < 24)
     {
         row[1] = -1;

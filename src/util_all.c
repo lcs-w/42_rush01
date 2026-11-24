@@ -38,10 +38,8 @@ bool _check_unique(const int *arr, int dim)
 	{
 		j = i;
 		while (++j < dim)
-		{
 			if (arr[i] == arr[j])
 				return (false);
-		}
 	}
 	return (true);
 }
@@ -71,12 +69,9 @@ int _check_appearance(const int *line, int dim)
 
 int *_make_one_line(int *i, int dim)
 {
-	int *line;
+	int *line = malloc((size_t)dim * sizeof(int));
 
-	line = malloc((size_t)dim * sizeof(int));
 	while (--dim >= 0)
-	{
 		line[dim] = i[dim];
-	}
 	return (line);
 }

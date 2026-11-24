@@ -1,9 +1,11 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "core.h"
+#include "combo.h"
 
 int *read_input16(const char *input);
 int **get_grid44(const int *input, int **all_combo, int *flag);
+int **solve44(int *input, int **all_combo, int *flag);
 
 int *read_input16(const char *input)
 {
@@ -37,5 +39,15 @@ int **get_grid44(const int *input, int **all_combo, int *flag)
 	int **solution = malloc(4 * sizeof(int *));
 
 	_core_solver44(input, solution, all_combo, flag);
+	return (solution);
+}
+
+int **solve44(int *input, int **all_combo, int *flag)
+{
+	int **solution;
+
+	all_combo = malloc(25 * sizeof(int *));
+	get_all_combo24(all_combo);
+	solution = get_grid44(input, all_combo, flag);
 	return (solution);
 }
